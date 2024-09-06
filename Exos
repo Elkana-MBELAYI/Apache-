@@ -1,0 +1,163 @@
+LES EXERCICES TPS
+
+Exercice 1: Serveur node js
+
+Journalisation d'un site web (avec deux routes : home et help sur un serveur node js), sur un fichier .txt, à chaque visite du client.
+
+
+Exercice 2: Serveur angular
+
+Journalisation d'un site web (avec deux routes : home et help sur un serveur angular), sur un fichier .txt, à chaque visite du client.7
+
+
+Exercice 3: Serveur apache
+
+Journalisation d'un site web (avec deux pages : index.php et help.php sur un serveur apache), sur un fichier .txt, à chaque visite du client.
+
+
+Exercice 4: Backup
+
+L'automatisation de la journalisation et backup, pour chaque log de serveurs (php, node js, angular) dans des fichiers .txt.
+A chaque fois que les logs atteindront 2ko de taille, copier leurs contenus dans fichiers backup et vider les log.
+
+
+Exercice 5: Crontab
+
+Le script doit afficher Hello World
+Journaliser l'exécution du fichier 
+tester avec tail -f pour voir en temps réel les logs
+
+
+Exercice 6: Crontab
+
+Le script doit exécuter google.com avec curl
+Journaliser l'exécution du fichier 
+tester avec tail -f pour voir en temps réel les logs
+
+
+Exercice 7: Crontab
+
+Le script doit vérifier si le fichier server.conf existe, sinon le télécharger avec git
+Journaliser l'exécution du fichier 
+tester avec tail -f pour voir en temps réel les logs
+
+
+Exercice 8: Sys Admin Mailing
+
+Le script doit envoyer les performance du serveur au sys admin
+La memoire, % CPU, Stockage disponible
+Envoyer au Sys Admin
+
+
+Exercice 9: Backup S3
+
+Création des instances EC2 et S3 : Vous lancez une instance EC2 pour exécuter le script de backup du fichier archivé (contenant 4 fichiers). Vous créez un bucket S3 pour stocker les backups. Et arrêter une fois que nous atteignons 4 backups.
+
+Configuration des permissions avec IAM : créez un rôle IAM avec des permissions d'accès complet à S3 (S3 Full Access) attaché à l'instance EC2.
+
+Création du script de backup : Vous utilisé tar pour créer des archives de nos fichiers et dossiers.
+
+
+Exercice 10: Attaque DDoS
+
+Vous créez deux instances EC2
+Vous écrivez un script sur le premier EC2 qui va faire une attaque DDoS sur le deuxième EC2.
+Et au niveau du deuxième EC2, vous allez écrire un script qui va voir l’historique des performances CPU chaque seconde et va les mettre sur un fichier .csv
+A la fin de l’attaque, vous faites cat du fichier .csv et notez les variations des performances CPU pour PLOTER la courbe.
+
+Exercice 11 : Load Balancer avec nginx
+
+Vous lancez un VPC dans lequel vous aurez 3 subnets (un public et deux privés) et chaque subnet sera dans son availability zone (donc nous aurons aussi 3 AZ)
+Dans chaque subnet, vous lancez un ec2 où vous lancez un serveur Node.
+Spécialement au niveau de l'availability zone 2 (où le subnet est public), vous installez nginx (avec l'algorithme round robin) qui va faire la balance des charges.
+Dans chacun des deux ec2 des réseaux privés, vous lancez aussi un serveur Node.
+Vous affichez une page qui affiche Hello World dans deux ports différents : 5000 et 5001
+Mais au niveau de l'ec2 du subnet public où se trouve nginx vous affichez Hello World seulement au port 5000
+Au total, vous devez voir naviguer 5 sites sur votre browser (pour mieux voir, vous pouvez jouez sur la couleur du background)
+
+Supplément : écrire un script en prenant le nom du serveur et de l'hôte et automatiser son envoi sur GitHub 
+
+
+Exercice 12 : Balance des charges partie serveur avec réplication Master - Master 
+
+Vous lancez 3 ec2 comme précédemment : un ec2 dans un réseau public où vous aurez un proxy (qui peut être nginx) qui va faire la balance des charges sur les bases de données MySQL 
+
+Les deux autres ec2 sont dans deux réseaux où vous allez lancez MySQL
+Et entre les deux bases de données vous faites la réplication Master-Master.
+
+
+Exercice 13 : Balance des charges partie serveur avec réplication Master - slave
+
+Vous lancez 3 ec2 comme précédemment : un ec2 dans un réseau public où vous aurez un proxy (qui peut être nginx) qui va faire la balance des charges sur les bases de données MySQL
+
+Les deux autres ec2 sont dans deux réseaux où vous allez lancez MySQL
+Et entre les deux bases de données vous faites la réplication Master-slave.
+
+
+Exercice 14 : API gateway avec Lambda
+
+Vous créez votre website avec deux pages (login et register), vous l'héberger dans S3 (S3 a un nom de domaine).
+Vous automatisez son déploiement dans l'ec2 que vous aurez préalablement lancé.
+Vous lancez MySQL dans l'ec2
+Vous lancez aussi Secret Manager et vous y mettez les identifiants 
+
+Ensuite vous lancez API gateway (qui aura un nom de domaine) dans deux Lambda.
+Le premier lambda est pour la première page /login (avec un POST method)
+Le deuxième lambda est pour la deuxième page /register (avec un POST method)
+
+Vous écrivez un algorithme pour télécharger les identifiants au niveau de secret Manager pour se connecter à MySQL qui se trouve dans l'ec2
+
+Veuillez à régler le problème de Cross-Origin Resource Sharing (CORS)
+
+
+Exercice 15 : Application Load Balancer (ALB)
+
+Vous lancez un Application Load Balancer (ALB) 
+Vous devez déployer Deux target groups (chacun avec son auto scale) et vous devez rédiriger le traffic par rapport aux paramètres de l'URL.
+Vous avez deux paramètres dans URL : /user et /admin
+Nodejs avec express 
+
+
+Exercice 16 : Application Load Balancer (ALB)
+
+Application Load Balancer (ALB)
+Vous mettez un auto scale qui sera attaché à un target group
+Votre instance doit écouter le port 5000 (un site Nodejs express)
+Et l'auto Scale parle à l'ALB au port 80
+
+
+Exercice 17 : Firewall (Pare-feu)
+
+Vous créez un firewall que vous allez customiser pour surveiller les traffics entrant et sortant en bloquant :
+- les ports
+- les attaques de déni de service (DoS) : HTTP flood, Application layer attacks, Ping flood, Volumetric attacks, Protocol attacks, Smurf, Slowloris, NTP amplification, Buffer overflow, Teardrop, Misused application attack, Distributed denial of service attacks (DDoS), Ping of Death, UDP attacks
+- etc.
+
+
+Exercice  18 : Web scraping
+
+Créer une base des données 
+Vous faites un web scraping qui va prendre les données et les enregistrer dans votre base des données 
+Si les données existent déjà, vous n'enregistrez plus.
+Si ce sont les nouvelles données, vous enregistrez et vous envoyez le message par mail 
+
+
+Exercice  19 : web scraping sur l'or
+
+Faites du web scraping sur les données qui peuvent impacter la chute ou la hausse de l'or.
+Et vous envoyez le message par mail en précisant l'heure et la date de l'information obtenue
+
+Exercice 20 : Gestion des Privilèges d'utilisateur dans une Base de Données
+
+
+Vous êtes un administrateur de base des données et vous créez les tables RESET, EMPLOYES, DEPARTMENTS, TÂCHES. 
+
+Vous implémentez les tables à votre convenance mais tenez à ce que la table EMPLOYES ait la colonne PASSWORD 
+
+En tant qu'administrateur, veuillez à ce qu'un nouvel utilisateur Victoria (amie de lynx) ait les restrictions suivantes :
+- Ne pas voir la table RESET
+- Pouvoir Voir la liste des employés mais pas la colonne PASSWORD 
+- Pouvoir lister tous les départements mais pas INSERT, ni UPDATE 
+- Pouvoir lister et insérer dans la table TACHES, mais pas UPDATE, ni DELETE
+
+PS : j'ajoute le dernier lot d'exercices très bientôt 🙏🏿
